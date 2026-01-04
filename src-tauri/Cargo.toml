@@ -1,0 +1,51 @@
+[package]
+name = "antigravity-provider-cli"
+version = "0.1.0"
+edition = "2021"
+description = "Antigravity Provider CLI - Google Gemini CLI OAuth credential provider"
+authors = ["ProxyCast Team"]
+license = "MIT"
+
+[[bin]]
+name = "antigravity-provider-cli"
+path = "src/main.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json", "stream"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Encryption
+aes = "0.8"
+cbc = "0.1"
+sha2 = "0.10"
+hex = "0.4"
+rand = "0.8"
+base64 = "0.21"
+urlencoding = "2"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+anyhow = "1"
+thiserror = "1"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# UUID
+uuid = { version = "1", features = ["v4"] }
+
+# Regex
+regex = "1"
