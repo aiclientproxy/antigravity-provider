@@ -1,6 +1,6 @@
 {
   "name": "antigravity-provider",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Antigravity (Google Gemini CLI) OAuth Provider - 支持 Gemini 和 Claude 模型",
   "author": "ProxyCast Team",
   "homepage": "https://github.com/aiclientproxy/antigravity-provider",
