@@ -1,0 +1,21 @@
+# Rust
+/src-tauri/target/
+**/*.rs.bk
+Cargo.lock
+
+# Node.js
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.log

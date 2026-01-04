@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "timeout_ms": 120000,
+  "settings": {
+    "api": {
+      "environment": "daily",
+      "base_url_daily": "https://daily-cloudcode-pa.sandbox.googleapis.com",
+      "base_url_autopush": "https://autopush-cloudcode-pa.sandbox.googleapis.com",
+      "api_version": "v1internal"
+    },
+    "safety_settings": {
+      "harassment": "OFF",
+      "hate_speech": "OFF",
+      "sexually_explicit": "OFF",
+      "dangerous_content": "OFF",
+      "civic_integrity": "BLOCK_NONE"
+    },
+    "token_refresh": {
+      "auto_refresh": true,
+      "refresh_skew_seconds": 3000,
+      "max_retry": 3
+    },
+    "reasoning": {
+      "default_effort": "medium",
+      "enable_thinking_models": true
+    }
+  }
+}

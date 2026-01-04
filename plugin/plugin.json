@@ -1,0 +1,60 @@
+{
+  "name": "antigravity-provider",
+  "version": "0.1.0",
+  "description": "Antigravity (Google Gemini CLI) OAuth Provider - 支持 Gemini 和 Claude 模型",
+  "author": "ProxyCast Team",
+  "homepage": "https://github.com/aiclientproxy/antigravity-provider",
+  "license": "MIT",
+
+  "plugin_type": "oauth_provider",
+  "entry": "antigravity-provider-cli",
+  "min_proxycast_version": "1.0.0",
+
+  "provider": {
+    "id": "antigravity",
+    "display_name": "Antigravity (Gemini CLI)",
+    "target_protocol": "dynamic",
+    "protocol_rules": {
+      "claude-*": "anthropic",
+      "gemini-*": "gemini"
+    },
+    "supported_models": [
+      "gemini-3-pro-*",
+      "gemini-2.5-*",
+      "gemini-claude-*"
+    ],
+    "auth_types": ["oauth"],
+    "credential_schema": {
+      "type": "object",
+      "properties": {
+        "access_token": { "type": "string", "title": "Access Token" },
+        "refresh_token": { "type": "string", "title": "Refresh Token" },
+        "expiry_date": { "type": "integer", "title": "过期时间戳" },
+        "project_id": { "type": "string", "title": "Project ID" },
+        "email": { "type": "string", "title": "Google 邮箱" }
+      },
+      "required": ["access_token", "refresh_token"]
+    }
+  },
+
+  "binary": {
+    "binary_name": "antigravity-provider-cli",
+    "github_owner": "aiclientproxy",
+    "github_repo": "antigravity-provider",
+    "platform_binaries": {
+      "macos-arm64": "antigravity-provider-aarch64-apple-darwin",
+      "macos-x64": "antigravity-provider-x86_64-apple-darwin",
+      "linux-x64": "antigravity-provider-x86_64-unknown-linux-gnu",
+      "windows-x64": "antigravity-provider-x86_64-pc-windows-msvc.exe"
+    },
+    "checksum_file": "checksums.txt"
+  },
+
+  "ui": {
+    "surfaces": ["oauth_providers"],
+    "icon": "Sparkles",
+    "title": "Antigravity Provider",
+    "entry": "dist/index.js",
+    "styles": "dist/styles.css"
+  }
+}
