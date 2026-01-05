@@ -1,6 +1,6 @@
 [package]
 name = "antigravity-provider-cli"
-version = "0.2.0"
+version = "0.1.0"
 edition = "2021"
 description = "Antigravity Provider CLI - Google Gemini CLI OAuth credential provider"
 authors = ["ProxyCast Team"]
@@ -14,8 +14,8 @@ path = "src/main.rs"
 # Async runtime
 tokio = { version = "1", features = ["full"] }
 
-# HTTP client
-reqwest = { version = "0.11", features = ["json", "stream"] }
+# HTTP client - 使用 rustls 避免 OpenSSL 依赖
+reqwest = { version = "0.11", default-features = false, features = ["json", "stream", "rustls-tls"] }
 
 # Serialization
 serde = { version = "1", features = ["derive"] }
@@ -49,3 +49,8 @@ uuid = { version = "1", features = ["v4"] }
 
 # Regex
 regex = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
