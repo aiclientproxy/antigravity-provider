@@ -15,7 +15,7 @@ import type { CardStatsProps } from "./types";
 /**
  * 格式化日期
  */
-function formatDate(dateStr?: string): string {
+function formatDate(dateStr?: string | null): string {
   if (!dateStr) return "从未";
   const date = new Date(dateStr);
   return date.toLocaleString("zh-CN", {
@@ -27,7 +27,7 @@ function formatDate(dateStr?: string): string {
 }
 
 export function CardStats({ credential, isOAuth }: CardStatsProps) {
-  const hasError = credential.error_count > 0;
+  const hasError = (credential.error_count || 0) > 0;
 
   return (
     <>

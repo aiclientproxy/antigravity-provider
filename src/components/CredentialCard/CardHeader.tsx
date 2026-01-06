@@ -13,7 +13,6 @@ import {
   Globe,
   Sparkles,
   cn,
-  type CredentialSource,
 } from "@proxycast/plugin-components";
 import type { CardHeaderProps } from "./types";
 
@@ -25,7 +24,8 @@ interface SourceConfig {
 /**
  * 获取凭证类型标签
  */
-function getCredentialTypeLabel(type: string): string {
+function getCredentialTypeLabel(type: string | undefined): string {
+  if (!type) return "未知";
   const labels: Record<string, string> = {
     antigravity_oauth: "Google OAuth",
     kiro_oauth: "OAuth",
@@ -40,8 +40,8 @@ function getCredentialTypeLabel(type: string): string {
 /**
  * 获取来源标签配置
  */
-function getSourceConfig(source: CredentialSource): SourceConfig {
-  const configs: Record<CredentialSource, SourceConfig> = {
+function getSourceConfig(source: string | undefined): SourceConfig {
+  const configs: Record<string, SourceConfig> = {
     manual: {
       text: "手动添加",
       color: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
@@ -54,20 +54,30 @@ function getSourceConfig(source: CredentialSource): SourceConfig {
       text: "私有",
       color: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
     },
+    local: {
+      text: "本地",
+      color: "bg-gray-100 text-gray-700 dark:bg-gray-900/30 dark:text-gray-400",
+    },
+    remote: {
+      text: "远程",
+      color: "bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400",
+    },
   };
-  return configs[source] || configs.manual;
+  return configs[source || "manual"] || configs.manual;
 }
 
 /**
  * 获取来源图标
  */
-function getSourceIcon(source: CredentialSource) {
-  const icons: Record<CredentialSource, React.ComponentType<{ className?: string }>> = {
+function getSourceIcon(source: string | undefined) {
+  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
     manual: User,
     imported: Upload,
     private: Lock,
+    local: User,
+    remote: Globe,
   };
-  return icons[source] || User;
+  return icons[source || "manual"] || User;
 }
 
 export function CardHeader({ credential, isHealthy }: CardHeaderProps) {

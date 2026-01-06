@@ -21,8 +21,8 @@ export function CredentialCard({
   checkingHealth,
   refreshingToken,
 }: CredentialCardProps) {
-  const isHealthy = credential.is_healthy && !credential.is_disabled;
-  const isOAuth = credential.credential_type.includes("oauth");
+  const isHealthy = (credential.is_healthy ?? false) && !credential.is_disabled;
+  const isOAuth = (credential.credential_type ?? "").includes("oauth");
 
   return (
     <div
